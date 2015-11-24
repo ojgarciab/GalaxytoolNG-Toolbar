@@ -2,8 +2,9 @@
 // @name        GalaxytoolNG Toolbar
 // @namespace   https://foro.gt.linaresdigital.com
 // @description Galaxytool Toolbar compabible with Ogame 6
-// @namespace   https://github.com/GalaxytoolNG
 // @version     0.1
+// @namespace   https://github.com/GalaxytoolNG
+// @downloadURL https://raw.githubusercontent.com/GalaxytoolNG/GalaxytoolNG-Toolbar/master/toolbar.user.js
 // @grant       GM_xmlhttpRequest
 // @grant       GM_log
 // @include     http://*.ogame.gameforge.com/game/index.php*
@@ -15,7 +16,8 @@
 ;(function() {
     /* Callback for AJAX calls */
     function rellamada(event, xhr, settings) {
-        console.log(settings);
+        console.log('======> Settings:'); console.log(settings);
+        console.log('======> xhr:'); console.log(xhr);
         switch ( settings.url ) {
             case 'index.php?page=messages&tab=20&ajax=1':
                 /* Espionage tab */
