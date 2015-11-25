@@ -53,9 +53,26 @@
                 break;
         }
     }
-    switch ( location.search ) {
+    /*switch ( location.search ) {
         case '?page=messages':
             $(document).ajaxComplete(ajax_callback);
             break;
-    }
+    }*/
+    var MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
+    var divs = document.querySelector('div.content');
+    console.log(divs);
+
+    var observer = new MutationObserver(function(mutations) {  
+        mutations.forEach(function(mutation) {
+            //#ui-id-20 > ul > li:nth-child(6)
+            console.log('---------[AQUI]-[AQUI]-------------');
+            console.log(mutation);
+        });
+    });
+    console.log('---------[AQUI]-------------');
+    //ajax_load_shadow clearfix
+    observer.observe(divs, {
+        subtree: true,
+        childList: true, 
+    });
 })();
