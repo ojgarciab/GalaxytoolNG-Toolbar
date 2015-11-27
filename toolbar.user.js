@@ -2,7 +2,7 @@
 // @name        GalaxytoolNG Toolbar
 // @namespace   https://foro.gt.linaresdigital.com
 // @description Galaxytool Toolbar compatible with Ogame 6
-// @version     0.2.3
+// @version     0.2.4
 // @author      Óscar Javier García Baudet
 // @namespace   https://github.com/GalaxytoolNG
 // @downloadURL https://raw.githubusercontent.com/GalaxytoolNG/GalaxytoolNG-Toolbar/master/toolbar.user.js
@@ -65,16 +65,23 @@
     var observer = new MutationObserver(function(mutations) {  
         mutations.forEach(function(mutation) {
             //#ui-id-20 > ul > li:nth-child(6)
-            console.log('---------[AQUI]-[AQUI]-------------');
+            console.log('---------[ MUTATION EVENT STARTS HERE ]-------------');
             for (var i = 0; i < mutation.addedNodes.length; ++i) {
                 //console.log(mutation.addedNodes.item(i));
-                var xpathResult = document.evaluate(".//li[contains(@class,'msg') and @data-msg-id]", mutation.addedNodes.item(i), null, XPathResult.ORDERED_NODE_ITERATOR_TYPE, null );
+                var xpathResult = document.evaluate(".//li[@data-msg-id]", mutation.addedNodes.item(i), null, XPathResult.ORDERED_NODE_ITERATOR_TYPE, null );
                 var thisNode = xpathResult.iterateNext();
                 while (thisNode) {
-                    console.log(thisNode);
+                    console.log('---------[ XPATH NODE ]-------------');
+                    var apiKey = document.evaluate(".//a[starts-with(@href,'ogame-api://')]", thisNode, null, XPathResult.FIRST_ORDERED_NODE_TYPE , null );
+                    if (apiKey.singleNodeValue != null) {
+                        console.log('API key: ' + apiKey.singleNodeValue.getAttribute('href'));
+                    } else {
+                        console.log('API key not found in message');
+                    }
                     thisNode = xpathResult.iterateNext();
                 }
             }
+            console.log('---------[ MUTATION EVENT ENDS HERE ]-------------');
         });
     });
     console.log('---------[AQUI]-------------');
