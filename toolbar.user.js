@@ -2,7 +2,7 @@
 // @name        GalaxytoolNG Toolbar
 // @namespace   https://foro.gt.linaresdigital.com
 // @description Galaxytool Toolbar compatible with Ogame 6
-// @version     0.3.0
+// @version     0.3.1
 // @author      Óscar Javier García Baudet
 // @namespace   https://github.com/GalaxytoolNG
 // @downloadURL https://raw.githubusercontent.com/GalaxytoolNG/GalaxytoolNG-Toolbar/master/toolbar.user.js
@@ -16,7 +16,7 @@
 
 ;(function() {
     var MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
-    var base = document.querySelector('#buttonz > div.content > div.js_tabs.tabs_wrap.ui-tabs.ui-widget.ui-widget-content.ui-corner-all');
+    var base = document.querySelector('#buttonz > div.content');
 
     var observer = new MutationObserver(function(mutations) {  
         mutations.forEach(function(mutation) {
@@ -26,14 +26,16 @@
                 return;
             }
             console.log('---------[ MUTATION EVENT WILL BE PROCESSED ]-------------');
+            var apiList = [];
             for (var i = 0; i < mutation.addedNodes.length; ++i) {
                 var xpathResult = document.evaluate(".//li[@data-msg-id]", mutation.addedNodes.item(i), null, XPathResult.ORDERED_NODE_ITERATOR_TYPE, null );
                 var thisNode = xpathResult.iterateNext();
                 while (thisNode) {
                     console.log('---------[ XPATH NODE ]-------------');
                     var apiKey = document.evaluate(".//a[starts-with(@href,'ogame-api://')]", thisNode, null, XPathResult.FIRST_ORDERED_NODE_TYPE , null );
-                    if (apiKey.singleNodeValue != null) {
+                    if (apiKey.singleNodeValue != null && apiKey.singleNodeValue.getAttribute('href') != null) {
                         console.log('API key found: ' + apiKey.singleNodeValue.getAttribute('href'));
+                        apiList.push(apiKey.singleNodeValue.getAttribute('href'));
                     } else {
                         console.log('API key not found in this message');
                     }
@@ -45,7 +47,7 @@
             /*GM_xmlhttpRequest({
                 method: "POST",
                 url: url,
-                data: data,
+                data: apiList,
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded"
                 },
