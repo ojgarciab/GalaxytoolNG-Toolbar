@@ -2,10 +2,11 @@
 // @name        GalaxytoolNG Toolbar
 // @namespace   https://foro.gt.linaresdigital.com
 // @description Galaxytool Toolbar compatible with Ogame 6
-// @version     0.3.1
+// @version     0.3.2
 // @author      Óscar Javier García Baudet
 // @namespace   https://github.com/GalaxytoolNG
 // @downloadURL https://raw.githubusercontent.com/GalaxytoolNG/GalaxytoolNG-Toolbar/master/toolbar.user.js
+// @require     configuracion.user.js
 // @grant       GM_xmlhttpRequest
 // @grant       GM_log
 // @include     http://*.ogame.gameforge.com/game/index.php?page=messages*
@@ -43,6 +44,7 @@
                 }
             }
             console.log('---------[ MUTATION EVENT ENDS HERE ]-------------');
+            
             /* Send results to every destination configured */
             /*GM_xmlhttpRequest({
                 method: "POST",
