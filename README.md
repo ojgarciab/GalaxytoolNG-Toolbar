@@ -11,14 +11,9 @@ Work progress holded waiting for API key.
 Toolbar will get all API codes from message page and send them to PHP recollector.
 
 Steps:
-* Get API keys from messages tab (DONE).
-* Configure panel to setup PHP collectors (TODO).
-* Send data to PHP collector/s (TODO).
-
-[ ] hola.
-
-[x] adios.
-
+* [x] Get API keys from messages tab (DONE).
+* [ ] Configure panel to setup PHP collectors (TODO).
+* [ ] Send data to PHP collector/s (TODO).
 
 #### Step 2: PHP collector
 
