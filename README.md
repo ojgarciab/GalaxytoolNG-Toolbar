@@ -14,8 +14,11 @@ Steps:
 * Get API keys from messages tab (DONE).
 * Configure panel to setup PHP collectors (TODO).
 * Send data to PHP collector/s (TODO).
-[ ] hola
-[x] adios
+
+[ ] hola.
+
+[x] adios.
+
 
 #### Step 2: PHP collector
 
