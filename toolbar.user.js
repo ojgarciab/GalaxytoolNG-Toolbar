@@ -1,85 +1,62 @@
 // ==UserScript==
 // @name        GalaxytoolNG Toolbar
 // @namespace   https://foro.gt.linaresdigital.com
-// @description Galaxytool Toolbar compabible with Ogame 6
-// @version     0.2.3
+// @description Galaxytool Toolbar compatible with Ogame 6
+// @version     0.3.2
 // @author      Óscar Javier García Baudet
 // @namespace   https://github.com/GalaxytoolNG
 // @downloadURL https://raw.githubusercontent.com/GalaxytoolNG/GalaxytoolNG-Toolbar/master/toolbar.user.js
 // @grant       GM_xmlhttpRequest
 // @grant       GM_log
-// @include     http://*.ogame.gameforge.com/game/index.php*
+// @include     http://*.ogame.gameforge.com/game/index.php?page=messages*
 // @copyright   2015+, Óscar Javier García Baudet
 // ==/UserScript==
 /* jshint -W097 */
 'use strict';
 
 ;(function() {
-    /* Callback for AJAX calls */
-    function ajax_callback(event, xhr, settings) {
-        /* Log events */
-        console.log('======> Settings:'); console.log(settings);
-        console.log('======> xhr:'); console.log(xhr);
-        /* Exit if AJAX fails (is it necessary?) */
-        if (xhr.status != 200) {
-            return;
-        }
-        parser = new DOMParser();
-        xmlDoc = parser.parseFromString(text,"text/xml");
-        switch ( settings.url ) {
-            case 'index.php?page=messages&tab=20&ajax=1':
-                /* Fleets / Espionage */
-                console.log('TAB: Fleets / Espionage');
-                break;
-            case 'index.php?page=messages&tab=21&ajax=1':
-                /* Fleets / Combat Reports */
-                console.log('TAB: Fleets / Combat Reports');
-                break;
-            case 'index.php?page=messages&tab=21&ajax=1':
-                /* Fleets / Unions */
-                console.log('TAB: Fleets / Unions');
-                break;
-            case 'index.php?page=messages&tab=25&ajax=1':
-                /* Fleets / Trash */
-                console.log('TAB: Fleets / Trash');
-                break;
-            case 'index.php?page=messages&tab=12&ajax=1':
-                /* Communication / Shared Combat Reports */
-                console.log('TAB: Communication / Shared Combat Reports');
-                break;
-            case 'index.php?page=messages&tab=11&ajax=1':
-                /* Communication / Shared Espionage Reports */
-                console.log('TAB: Communication / Shared Espionage Reports');
-                break;
-        }
-    }
-    /*switch ( location.search ) {
-        case '?page=messages':
-            $(document).ajaxComplete(ajax_callback);
-            break;
-    }*/
     var MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
-    var divs = document.querySelector('div.content');
-    console.log(divs);
+    var base = document.querySelector('#buttonz > div.content');
 
     var observer = new MutationObserver(function(mutations) {  
         mutations.forEach(function(mutation) {
-            //#ui-id-20 > ul > li:nth-child(6)
-            console.log('---------[AQUI]-[AQUI]-------------');
+            console.log('---------[ MUTATION EVENT STARTS HERE ]-------------');
+            console.log(mutation);
+            if (mutation.target.className != 'ui-tabs-panel ui-widget-content ui-corner-bottom') {
+                return;
+            }
+            console.log('---------[ MUTATION EVENT WILL BE PROCESSED ]-------------');
+            var apiList = [];
             for (var i = 0; i < mutation.addedNodes.length; ++i) {
-                //console.log(mutation.addedNodes.item(i));
-                var xpathResult = document.evaluate(".//li[contains(@class,'msg') and @data-msg-id]", mutation.addedNodes.item(i), null, XPathResult.ORDERED_NODE_ITERATOR_TYPE, null );
+                var xpathResult = document.evaluate(".//li[@data-msg-id]", mutation.addedNodes.item(i), null, XPathResult.ORDERED_NODE_ITERATOR_TYPE, null );
                 var thisNode = xpathResult.iterateNext();
                 while (thisNode) {
-                    console.log(thisNode);
+                    console.log('---------[ XPATH NODE ]-------------');
+                    var apiKey = document.evaluate(".//a[starts-with(@href,'ogame-api://')]", thisNode, null, XPathResult.FIRST_ORDERED_NODE_TYPE , null );
+                    if (apiKey.singleNodeValue != null && apiKey.singleNodeValue.getAttribute('href') != null) {
+                        console.log('API key found: ' + apiKey.singleNodeValue.getAttribute('href'));
+                        apiList.push(apiKey.singleNodeValue.getAttribute('href'));
+                    } else {
+                        console.log('API key not found in this message');
+                    }
                     thisNode = xpathResult.iterateNext();
                 }
             }
+            console.log('---------[ MUTATION EVENT ENDS HERE ]-------------');
+            /* Set testing URL with localStorage.getItem('Galaxytoolng_url', 'http://...'); in console */
+            /* Send results to every destination configured */
+            GM_xmlhttpRequest({
+                method: "POST",
+                url: localStorage.getItem('Galaxytoolng_url'),
+                data: apiList,
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                onload: function(response) { GM_log(response.responseText); }
+            });
         });
     });
-    console.log('---------[AQUI]-------------');
-    //ajax_load_shadow clearfix
-    observer.observe(divs, {
+    observer.observe(base, {
         subtree: true,
         childList: true, 
     });
