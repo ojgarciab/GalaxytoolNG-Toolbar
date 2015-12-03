@@ -6,7 +6,6 @@
 // @author      Óscar Javier García Baudet
 // @namespace   https://github.com/GalaxytoolNG
 // @downloadURL https://raw.githubusercontent.com/GalaxytoolNG/GalaxytoolNG-Toolbar/master/toolbar.user.js
-// @require     configuracion.user.js
 // @grant       GM_xmlhttpRequest
 // @grant       GM_log
 // @include     http://*.ogame.gameforge.com/game/index.php?page=messages*
@@ -44,17 +43,17 @@
                 }
             }
             console.log('---------[ MUTATION EVENT ENDS HERE ]-------------');
-            
+            /* Set testing URL with localStorage.getItem('Galaxytoolng_url', 'http://...'); in console */
             /* Send results to every destination configured */
-            /*GM_xmlhttpRequest({
+            GM_xmlhttpRequest({
                 method: "POST",
-                url: url,
+                url: localStorage.getItem('Galaxytoolng_url'),
                 data: apiList,
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded"
                 },
                 onload: function(response) { GM_log(response.responseText); }
-            });*/
+            });
         });
     });
     observer.observe(base, {
@@ -62,3 +61,4 @@
         childList: true, 
     });
 })();
+
