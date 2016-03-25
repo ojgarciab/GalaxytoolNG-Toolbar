@@ -2,7 +2,7 @@
 Request for Ogame API key:
 http://board.origin.ogame.gameforge.com/board6-origin/board5-feedback-discussions/7233-applications-for-api-keys/index2.html#post40043
 
-Work progress holded waiting for API key.
+Work in progress, I have API key only for pionners universe.
 
 ## Flow of data ##
 
