@@ -2,7 +2,7 @@
 // @name        GalaxytoolNG Toolbar
 // @namespace   https://foro.gt.linaresdigital.com
 // @description Galaxytool Toolbar compatible with Ogame 6
-// @version     0.3.5
+// @version     0.3.6
 // @author      Óscar Javier García Baudet
 // @namespace   https://github.com/GalaxytoolNG
 // @downloadURL https://raw.githubusercontent.com/GalaxytoolNG/GalaxytoolNG-Toolbar/master/toolbar.user.js
@@ -15,7 +15,7 @@
 
 /* jshint browser:true, devel: true, newcap: false */
 /* jshint -W097 */
-/* global GM_xmlhttpRequest:false GM_log:false */
+/* global GM_xmlhttpRequest:false, GM_log:false */
 /* eslint-env browser */
 
 'use strict';
@@ -67,6 +67,6 @@
     });
     observer.observe(base, {
         subtree: true,
-        childList: true
+        childList: true, 
     });
 })();
