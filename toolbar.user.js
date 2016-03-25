@@ -19,10 +19,11 @@
 /* global GM_xmlhttpRequest:false, GM_log:false */
 
 /* eslint-env browser, greasemonkey */
+/* eslint no-extra-semi: 2 */
 
 'use strict';
 
-(function() {
+;(function() { // eslint-disable-line no-extra-semi
     var MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
     var base = document.querySelector('#buttonz > div.content');
 
@@ -72,3 +73,4 @@
         childList: true
     });
 })();
+
