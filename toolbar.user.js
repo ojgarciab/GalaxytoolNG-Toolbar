@@ -2,16 +2,22 @@
 // @name        GalaxytoolNG Toolbar
 // @namespace   https://foro.gt.linaresdigital.com
 // @description Galaxytool Toolbar compatible with Ogame 6
-// @version     0.3.4
+// @version     0.3.5
 // @author      Óscar Javier García Baudet
 // @namespace   https://github.com/GalaxytoolNG
 // @downloadURL https://raw.githubusercontent.com/GalaxytoolNG/GalaxytoolNG-Toolbar/master/toolbar.user.js
 // @grant       GM_xmlhttpRequest
 // @grant       GM_log
 // @include     http://*.ogame.gameforge.com/game/index.php?page=messages*
+// @include     https://*.ogame.gameforge.com/game/index.php?page=messages*
 // @copyright   2015+, Óscar Javier García Baudet
 // ==/UserScript==
+
+/* jshint browser:true, devel: true, newcap: false */
 /* jshint -W097 */
+/* global GM_xmlhttpRequest:false GM_log:false */
+/* eslint-env browser */
+
 'use strict';
 
 ;(function() {
@@ -33,7 +39,7 @@
                 while (thisNode) {
                     console.log('---------[ XPATH NODE ]-------------');
                     var apiKey = document.evaluate(".//a[starts-with(@href,'ogame-api://')]", thisNode, null, XPathResult.FIRST_ORDERED_NODE_TYPE , null );
-                    if (apiKey.singleNodeValue != null && apiKey.singleNodeValue.getAttribute('href') != null) {
+                    if (apiKey.singleNodeValue !== null && apiKey.singleNodeValue.getAttribute('href') !== null) {
                         console.log('API key found: ' + apiKey.singleNodeValue.getAttribute('href'));
                         apiList.push(apiKey.singleNodeValue.getAttribute('href'));
                     } else {
@@ -44,7 +50,7 @@
             }
             console.log('---------[ MUTATION EVENT ENDS HERE ]-------------');
             /* Set testing URL with localStorage.getItem('Galaxytoolng_url', 'http://...'); in console */
-            if (localStorage.getItem('Galaxytoolng_url') == false) {
+            if (localStorage.getItem('Galaxytoolng_url') === false) {
               return;
             }
             /* Send results to every destination configured */
@@ -61,6 +67,6 @@
     });
     observer.observe(base, {
         subtree: true,
-        childList: true, 
+        childList: true
     });
 })();
