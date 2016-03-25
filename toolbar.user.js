@@ -2,19 +2,28 @@
 // @name        GalaxytoolNG Toolbar
 // @namespace   https://foro.gt.linaresdigital.com
 // @description Galaxytool Toolbar compatible with Ogame 6
-// @version     0.3.2
+// @version     0.3.8
 // @author      Óscar Javier García Baudet
 // @namespace   https://github.com/GalaxytoolNG
 // @downloadURL https://raw.githubusercontent.com/GalaxytoolNG/GalaxytoolNG-Toolbar/master/toolbar.user.js
 // @grant       GM_xmlhttpRequest
 // @grant       GM_log
 // @include     http://*.ogame.gameforge.com/game/index.php?page=messages*
+// @include     https://*.ogame.gameforge.com/game/index.php?page=messages*
 // @copyright   2015+, Óscar Javier García Baudet
 // ==/UserScript==
+
+/* jshint browser:true, devel: true, newcap: false */
 /* jshint -W097 */
+/* Fix: JSHint doesn't know about greasemonkey environment as eslint */
+/* global GM_xmlhttpRequest:false, GM_log:false */
+
+/* eslint-env browser, greasemonkey */
+/* eslint no-extra-semi: 2 */
+
 'use strict';
 
-;(function() {
+;(function() { // eslint-disable-line no-extra-semi
     var MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
     var base = document.querySelector('#buttonz > div.content');
 
@@ -33,7 +42,7 @@
                 while (thisNode) {
                     console.log('---------[ XPATH NODE ]-------------');
                     var apiKey = document.evaluate(".//a[starts-with(@href,'ogame-api://')]", thisNode, null, XPathResult.FIRST_ORDERED_NODE_TYPE , null );
-                    if (apiKey.singleNodeValue != null && apiKey.singleNodeValue.getAttribute('href') != null) {
+                    if (apiKey.singleNodeValue !== null && apiKey.singleNodeValue.getAttribute('href') !== null) {
                         console.log('API key found: ' + apiKey.singleNodeValue.getAttribute('href'));
                         apiList.push(apiKey.singleNodeValue.getAttribute('href'));
                     } else {
@@ -44,6 +53,9 @@
             }
             console.log('---------[ MUTATION EVENT ENDS HERE ]-------------');
             /* Set testing URL with localStorage.getItem('Galaxytoolng_url', 'http://...'); in console */
+            if (localStorage.getItem('Galaxytoolng_url') === false) {
+              return;
+            }
             /* Send results to every destination configured */
             GM_xmlhttpRequest({
                 method: "POST",
@@ -58,7 +70,7 @@
     });
     observer.observe(base, {
         subtree: true,
-        childList: true, 
+        childList: true
     });
 })();
 
