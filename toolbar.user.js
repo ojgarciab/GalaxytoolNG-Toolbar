@@ -2,7 +2,7 @@
 // @name        GalaxytoolNG Toolbar
 // @namespace   https://foro.gt.linaresdigital.com
 // @description Galaxytool Toolbar compatible with Ogame 6
-// @version     0.3.5
+// @version     0.3.8
 // @author      Óscar Javier García Baudet
 // @namespace   https://github.com/GalaxytoolNG
 // @downloadURL https://raw.githubusercontent.com/GalaxytoolNG/GalaxytoolNG-Toolbar/master/toolbar.user.js
@@ -15,12 +15,14 @@
 
 /* jshint browser:true, devel: true, newcap: false */
 /* jshint -W097 */
-/* global GM_xmlhttpRequest:false GM_log:false */
-/* eslint-env browser */
+/* Fix: JSHint doesn't know about greasemonkey environment as eslint */
+/* global GM_xmlhttpRequest:false, GM_log:false */
+
+/* eslint-env browser, greasemonkey */
 
 'use strict';
 
-;(function() {
+(function() {
     var MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
     var base = document.querySelector('#buttonz > div.content');
 
