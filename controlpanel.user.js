@@ -2,7 +2,7 @@
 // @name        GalaxytoolNG Toolbar: Control Panel
 // @namespace   https://foro.gt.linaresdigital.com
 // @description Control Panel for Galaxytool Toolbar compatible with Ogame 6
-// @version     0.0.1
+// @version     0.0.2
 // @author      Óscar Javier García Baudet
 // @namespace   https://github.com/GalaxytoolNG
 // @downloadURL https://raw.githubusercontent.com/GalaxytoolNG/GalaxytoolNG-Toolbar/master/controlpanel.user.js
@@ -24,7 +24,19 @@
 
 (function() {
     var menuTableTools = document.getElementById('menuTableTools');
-    var menuGTNG = document.createElement("li");
-    menuGTNG.innerHTML = '<a class="menubutton" href="#"><span class="textlabel">GalaxytoolNG</span></a>'
+    var menuGTNG = document.createElement('li');
+    function toogleMenu() {
+        var bottonz = document.getElementById('buttonz');
+        bottonz.style.display = 'none';
+        var settingsGTNG = document.createElement('div');
+        settingsGTNG.id = 'settingsGTNG';
+        settingsGTNG.innerHTML = '<div class="header c-left"><h2>GalaxytoolNG settings:</h2></div><div class="content">HELLO</div>';
+        document.getElementById("contentWrapper").appendChild(settingsGTNG);
+    }
+    menuGTNG.innerHTML = '<a class="menubutton" href="#"><span class="textlabel">GalaxytoolNG</span></a>';
+    menuGTNG.addEventListener('click', function(e) {
+        toogleMenu();
+    },false);
     menuTableTools.appendChild(menuGTNG);
+    inhalt = doc.getElementById("buttonz");
 })();
