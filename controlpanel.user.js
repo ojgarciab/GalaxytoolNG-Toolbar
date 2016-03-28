@@ -2,7 +2,7 @@
 // @name        GalaxytoolNG Toolbar: Control Panel
 // @namespace   https://foro.gt.linaresdigital.com
 // @description Control Panel for Galaxytool Toolbar compatible with Ogame 6
-// @version     0.0.2
+// @version     0.0.3
 // @author      Óscar Javier García Baudet
 // @namespace   https://github.com/GalaxytoolNG
 // @downloadURL https://raw.githubusercontent.com/GalaxytoolNG/GalaxytoolNG-Toolbar/master/controlpanel.user.js
@@ -38,5 +38,4 @@
         toogleMenu();
     },false);
     menuTableTools.appendChild(menuGTNG);
-    inhalt = doc.getElementById("buttonz");
 })();
