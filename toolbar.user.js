@@ -7,10 +7,11 @@
 // @namespace   https://github.com/GalaxytoolNG
 // @downloadURL https://raw.githubusercontent.com/GalaxytoolNG/GalaxytoolNG-Toolbar/master/toolbar.user.js
 // @require     https://raw.githubusercontent.com/GalaxytoolNG/GalaxytoolNG-Toolbar/master/controlpanel.user.js
-// @resource    strings.ess    https://raw.githubusercontent.com/ojgarciab/GalaxytoolNG-Toolbar/master/strings.es.json
+// @resource    strings.es    https://raw.githubusercontent.com/ojgarciab/GalaxytoolNG-Toolbar/master/strings.es.json
 // @grant       GM_xmlhttpRequest
 // @grant       GM_log
 // @grant       GM_getValue
+// @grant       GM_setValue
 // @grant       GM_getResourceText
 // @include     http://*.ogame.gameforge.com/game/index.php?page=messages*
 // @include     https://*.ogame.gameforge.com/game/index.php?page=messages*
@@ -20,7 +21,7 @@
 /* jshint browser:true, newcap: false */
 /* jshint -W097 */
 /* Fix: JSHint doesn't know about greasemonkey environment as eslint */
-/* global GM_xmlhttpRequest:false, GM_log:false */
+/* global GM_xmlhttpRequest:false, GM_log:false, GM_getResourceText:false */
 
 /* eslint-env browser, greasemonkey */
 
@@ -83,10 +84,8 @@
     } catch (err) { }
     function _(string) {
         if (translation !== null && translation.hasOwnProperty(string)) {
-            GM_log("SI");
             return translation[string];
         }
-            GM_log("NO");
         return string;
     }
  })();
