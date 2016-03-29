@@ -1,13 +1,17 @@
 // ==UserScript==
-// @name        GalaxytoolNG Toolbar
+// @name        GalaxytoolNG Toolbar: Messages
 // @namespace   https://foro.gt.linaresdigital.com
 // @description Galaxytool Toolbar compatible with Ogame 6
-// @version     0.3.9
+// @version     0.4.0
 // @author      Óscar Javier García Baudet
 // @namespace   https://github.com/GalaxytoolNG
 // @downloadURL https://raw.githubusercontent.com/GalaxytoolNG/GalaxytoolNG-Toolbar/master/toolbar.user.js
+// @require     https://raw.githubusercontent.com/GalaxytoolNG/GalaxytoolNG-Toolbar/master/controlpanel.user.js
+// @resource    strings.ess    https://raw.githubusercontent.com/ojgarciab/GalaxytoolNG-Toolbar/master/strings.es.json
 // @grant       GM_xmlhttpRequest
 // @grant       GM_log
+// @grant       GM_getValue
+// @grant       GM_getResourceText
 // @include     http://*.ogame.gameforge.com/game/index.php?page=messages*
 // @include     https://*.ogame.gameforge.com/game/index.php?page=messages*
 // @copyright   2015+, Óscar Javier García Baudet
@@ -71,4 +75,18 @@
         subtree: true,
         childList: true
     });
-})();
+
+    /* Translation code */
+    var translation = {};
+    try {
+        translation = JSON.parse(GM_getResourceText('strings.' + navigator.language));
+    } catch (err) { }
+    function _(string) {
+        if (translation !== null && translation.hasOwnProperty(string)) {
+            GM_log("SI");
+            return translation[string];
+        }
+            GM_log("NO");
+        return string;
+    }
+ })();
