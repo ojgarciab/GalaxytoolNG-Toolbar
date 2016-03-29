@@ -31,6 +31,18 @@
     var MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
     var base = document.querySelector('#buttonz > div.content');
 
+    /* Translation code */
+    var translation = {};
+    try {
+        translation = JSON.parse(GM_getResourceText('strings.' + navigator.language));
+    } catch (err) { }
+    function _(string) {
+        if (translation !== null && translation.hasOwnProperty(string)) {
+            return translation[string];
+        }
+        return string;
+    }
+
     var observer = new MutationObserver(function(mutations) {  
         mutations.forEach(function(mutation) {
             GM_log('---------[ MUTATION EVENT STARTS HERE ]-------------');
@@ -76,16 +88,4 @@
         subtree: true,
         childList: true
     });
-
-    /* Translation code */
-    var translation = {};
-    try {
-        translation = JSON.parse(GM_getResourceText('strings.' + navigator.language));
-    } catch (err) { }
-    function _(string) {
-        if (translation !== null && translation.hasOwnProperty(string)) {
-            return translation[string];
-        }
-        return string;
-    }
  })();
