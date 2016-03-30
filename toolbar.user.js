@@ -2,11 +2,10 @@
 // @name        GalaxytoolNG Toolbar: Messages
 // @namespace   https://foro.gt.linaresdigital.com
 // @description Galaxytool Toolbar compatible with Ogame 6
-// @version     0.4.0
+// @version     0.4.1
 // @author      Óscar Javier García Baudet
 // @namespace   https://github.com/GalaxytoolNG
 // @downloadURL https://raw.githubusercontent.com/GalaxytoolNG/GalaxytoolNG-Toolbar/master/toolbar.user.js
-// @require     https://raw.githubusercontent.com/GalaxytoolNG/GalaxytoolNG-Toolbar/master/controlpanel.user.js
 // @resource    strings.es    https://raw.githubusercontent.com/ojgarciab/GalaxytoolNG-Toolbar/master/strings.es.json
 // @grant       GM_xmlhttpRequest
 // @grant       GM_log
@@ -42,6 +41,22 @@
         }
         return string;
     }
+
+    var menuTableTools = document.getElementById('menuTableTools');
+    var menuGTNG = document.createElement('li');
+    function toogleMenu() {
+        var bottonz = document.getElementById('buttonz');
+        bottonz.style.display = 'none';
+        var settingsGTNG = document.createElement('div');
+        settingsGTNG.id = 'settingsGTNG';
+        settingsGTNG.innerHTML = '<div class="header c-left"><h2>GalaxytoolNG settings:</h2></div><div class="content">HELLO</div>';
+        document.getElementById("contentWrapper").appendChild(settingsGTNG);
+    }
+    menuGTNG.innerHTML = '<a class="menubutton" href="#"><span class="textlabel">' + _('GalaxyToolNG') + '</span></a>';
+    menuGTNG.addEventListener('click', function(e) {
+        toogleMenu();
+    },false);
+    menuTableTools.appendChild(menuGTNG);
 
     var observer = new MutationObserver(function(mutations) {  
         mutations.forEach(function(mutation) {
