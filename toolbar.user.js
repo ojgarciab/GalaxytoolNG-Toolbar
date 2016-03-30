@@ -6,14 +6,13 @@
 // @author      Óscar Javier García Baudet
 // @namespace   https://github.com/GalaxytoolNG
 // @downloadURL https://raw.githubusercontent.com/GalaxytoolNG/GalaxytoolNG-Toolbar/master/toolbar.user.js
-// @resource    strings.es    https://raw.githubusercontent.com/ojgarciab/GalaxytoolNG-Toolbar/master/strings.es.json
+// @resource    strings.es    https://raw.githubusercontent.com/GalaxytoolNG/GalaxytoolNG-Toolbar/a345aa5553dcec575477d41568a1deecb161c314/strings.es.json
 // @grant       GM_xmlhttpRequest
 // @grant       GM_log
 // @grant       GM_getValue
 // @grant       GM_setValue
 // @grant       GM_getResourceText
-// @include     http://*.ogame.gameforge.com/game/index.php?page=messages*
-// @include     https://*.ogame.gameforge.com/game/index.php?page=messages*
+// @include     *://*.ogame.gameforge.com/game/index.php?page=*
 // @copyright   2015+, Óscar Javier García Baudet
 // ==/UserScript==
 
