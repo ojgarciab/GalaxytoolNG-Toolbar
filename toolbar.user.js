@@ -2,7 +2,7 @@
 // @name        GalaxytoolNG Toolbar: Messages
 // @namespace   https://foro.gt.linaresdigital.com
 // @description Galaxytool Toolbar compatible with Ogame 6
-// @version     0.4.3
+// @version     0.4.4
 // @author      Óscar Javier García Baudet
 // @namespace   https://github.com/GalaxytoolNG
 // @downloadURL https://raw.githubusercontent.com/GalaxytoolNG/GalaxytoolNG-Toolbar/master/toolbar.user.js
@@ -26,9 +26,6 @@
 'use strict';
 
 (function() {
-    var MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
-    var base = document.querySelector('#buttonz > div.content');
-
     /* Translation code */
     var translation = {};
     try {
@@ -41,6 +38,11 @@
         return string;
     }
 
+    /* Get page */
+    var page = window.location.search.match(/[?&]page=[^&]*/).replace(/[?&]page=/, '');
+    GM_log("page: " + page);
+    var MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
+    var base = document.querySelector('#buttonz > div.content');
     var menuTableTools = document.getElementById('menuTableTools');
     var menuGTNG = document.createElement('li');
     function toogleMenu() {
