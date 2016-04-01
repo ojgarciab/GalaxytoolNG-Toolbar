@@ -2,7 +2,7 @@
 // @name        GalaxytoolNG Toolbar: Messages
 // @namespace   https://foro.gt.linaresdigital.com
 // @description Galaxytool Toolbar compatible with Ogame 6
-// @version     0.4.5
+// @version     0.4.6
 // @author      Óscar Javier García Baudet
 // @namespace   https://github.com/GalaxytoolNG
 // @downloadURL https://raw.githubusercontent.com/GalaxytoolNG/GalaxytoolNG-Toolbar/master/toolbar.user.js
@@ -39,15 +39,20 @@
     }
 
     /* Menu */
-        var menuTableTools = document.getElementById('menuTableTools');
+    var menuTableTools = document.getElementById('menuTableTools');
     var menuGTNG = document.createElement('li');
+    var menuVisible = false;
     function toogleMenu() {
-        var bottonz = document.getElementById('buttonz');
-        bottonz.style.display = 'none';
-        var settingsGTNG = document.createElement('div');
-        settingsGTNG.id = 'settingsGTNG';
-        settingsGTNG.innerHTML = '<div class="header c-left"><h2>GalaxytoolNG settings:</h2></div><div class="content">HELLO</div>';
-        document.getElementById("contentWrapper").appendChild(settingsGTNG);
+        if (menuVisible === false) {
+            var bottonz = document.getElementById('buttonz');
+            bottonz.style.display = 'none';
+            var settingsGTNG = document.createElement('div');
+            settingsGTNG.id = 'settingsGTNG';
+            settingsGTNG.innerHTML = '<div class="header c-left"><h2>GalaxytoolNG settings:</h2></div><div class="content">HELLO</div>';
+            document.getElementById("contentWrapper").appendChild(settingsGTNG);
+        } else {
+            bottonz.style.display = 'block';
+        }
     }
     menuGTNG.innerHTML = '<a class="menubutton" href="#"><span class="textlabel">' + _('GalaxyToolNG') + '</span></a>';
     menuGTNG.addEventListener('click', function(e) {
