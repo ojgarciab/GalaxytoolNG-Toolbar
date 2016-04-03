@@ -2,7 +2,7 @@
 // @name        GalaxytoolNG Toolbar: Messages
 // @namespace   https://foro.gt.linaresdigital.com
 // @description Galaxytool Toolbar compatible with Ogame 6
-// @version     0.4.7
+// @version     0.4.8
 // @author      Óscar Javier García Baudet
 // @namespace   https://github.com/GalaxytoolNG
 // @downloadURL https://raw.githubusercontent.com/GalaxytoolNG/GalaxytoolNG-Toolbar/master/toolbar.user.js
@@ -70,7 +70,6 @@
             var observer = new MutationObserver(function(mutations) {  
                 mutations.forEach(function(mutation) {
                     GM_log('---------[ MUTATION EVENT STARTS HERE ]-------------');
-                    GM_log(mutation);
                     if (mutation.target.className != 'ui-tabs-panel ui-widget-content ui-corner-bottom') {
                         return;
                     }
