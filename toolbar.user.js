@@ -2,7 +2,7 @@
 // @name        GalaxytoolNG Toolbar: Messages
 // @namespace   https://foro.gt.linaresdigital.com
 // @description Galaxytool Toolbar compatible with Ogame 6
-// @version     0.4.8
+// @version     0.4.9
 // @author      Óscar Javier García Baudet
 // @namespace   https://github.com/GalaxytoolNG
 // @downloadURL https://raw.githubusercontent.com/GalaxytoolNG/GalaxytoolNG-Toolbar/master/toolbar.user.js
@@ -80,10 +80,13 @@
                         var thisNode = xpathResult.iterateNext();
                         while (thisNode) {
                             GM_log('---------[ XPATH NODE ]-------------');
-                            var apiKey = document.evaluate(".//a[starts-with(@href,'ogame-api://')]", thisNode, null, XPathResult.FIRST_ORDERED_NODE_TYPE , null );
-                            if (apiKey.singleNodeValue !== null && apiKey.singleNodeValue.getAttribute('href') !== null) {
-                                GM_log('API key found: ' + apiKey.singleNodeValue.getAttribute('href'));
-                                apiList.push(apiKey.singleNodeValue.getAttribute('href'));
+                            GM_log(thisNode.getAttribute('data-api-key'));
+                            GM_log(thisNode);
+                            var apiKey = document.evaluate(".//span[contains(@class,' icon_apikey ')]", thisNode, null, XPathResult.FIRST_ORDERED_NODE_TYPE , null );
+                            GM_log(apiKey.singleNodeValue);
+                            if (apiKey.singleNodeValue !== null && apiKey.singleNodeValue.getAttribute('title') !== null) {
+                                GM_log('API key found: ' + apiKey.singleNodeValue.getAttribute('title'));
+                                apiList.push(apiKey.singleNodeValue.getAttribute('title'));
                             } else {
                                 GM_log('API key not found in this message');
                             }
