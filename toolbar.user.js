@@ -2,7 +2,7 @@
 // @name        GalaxytoolNG Toolbar: Messages
 // @namespace   https://foro.gt.linaresdigital.com
 // @description Galaxytool Toolbar compatible with Ogame 6
-// @version     0.4.9
+// @version     0.5.0
 // @author      Óscar Javier García Baudet
 // @namespace   https://github.com/GalaxytoolNG
 // @downloadURL https://raw.githubusercontent.com/GalaxytoolNG/GalaxytoolNG-Toolbar/master/toolbar.user.js
@@ -70,6 +70,7 @@
             var observer = new MutationObserver(function(mutations) {  
                 mutations.forEach(function(mutation) {
                     GM_log('---------[ MUTATION EVENT STARTS HERE ]-------------');
+                    /* Discard this nodes */
                     if (mutation.target.className != 'ui-tabs-panel ui-widget-content ui-corner-bottom') {
                         return;
                     }
@@ -80,15 +81,22 @@
                         var thisNode = xpathResult.iterateNext();
                         while (thisNode) {
                             GM_log('---------[ XPATH NODE ]-------------');
-                            GM_log(thisNode.getAttribute('data-api-key'));
-                            GM_log(thisNode);
-                            var apiKey = document.evaluate(".//span[contains(@class,' icon_apikey ')]", thisNode, null, XPathResult.FIRST_ORDERED_NODE_TYPE , null );
-                            GM_log(apiKey.singleNodeValue);
-                            if (apiKey.singleNodeValue !== null && apiKey.singleNodeValue.getAttribute('title') !== null) {
-                                GM_log('API key found: ' + apiKey.singleNodeValue.getAttribute('title'));
-                                apiList.push(apiKey.singleNodeValue.getAttribute('title'));
+                            var apiKey = thisNode.getAttribute('data-api-key');
+                            if (apiKey !== null) {
+                                GM_log('API key found: ' + apiKey);
                             } else {
+                                /* Debug node content */
+                                GM_log(thisNode);
+                                apiKey = document.evaluate(".//span[contains(@class,' icon_apikey ')]", thisNode, null, XPathResult.FIRST_ORDERED_NODE_TYPE , null );
+                                GM_log(apiKey.singleNodeValue);
+                                if (apiKey.singleNodeValue !== null && apiKey.singleNodeValue.getAttribute('title') !== null) {
+                                }
+                            }
+                            if (apiKey === null) {
                                 GM_log('API key not found in this message');
+                            } else {
+                                GM_log('API key found: ' + apiKey);
+                                apiList.push(apiKey);
                             }
                             thisNode = xpathResult.iterateNext();
                         }
