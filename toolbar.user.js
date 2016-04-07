@@ -2,7 +2,7 @@
 // @name        GalaxytoolNG Toolbar: Messages
 // @namespace   https://foro.gt.linaresdigital.com
 // @description Galaxytool Toolbar compatible with Ogame 6
-// @version     0.5.1
+// @version     0.5.2
 // @author      Óscar Javier García Baudet
 // @namespace   https://github.com/GalaxytoolNG
 // @downloadURL https://raw.githubusercontent.com/GalaxytoolNG/GalaxytoolNG-Toolbar/master/toolbar.user.js
@@ -107,7 +107,7 @@
                     GM_log('---------[ MUTATION EVENT ENDS HERE ]-------------');
                     /* Set testing URL with localStorage.getItem('Galaxytoolng_url', 'http://...'); in console */
                     // Use here GM_getValue
-                    if (localStorage.getItem('Galaxytoolng_url') === false) {
+                    if (GM_getValue('Galaxytoolng_url') === false) {
                         return;
                     }
                     /* Send results to every destination configured */
@@ -118,7 +118,9 @@
                         headers: {
                             "Content-Type": "application/x-www-form-urlencoded"
                         },
-                        onload: function(response) { GM_log(response.responseText); }
+                        onload: function(response) {
+                            GM_log(response.responseText);
+                        }
                     });
                 });
             });
