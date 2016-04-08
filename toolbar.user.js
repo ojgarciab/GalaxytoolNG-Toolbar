@@ -2,7 +2,7 @@
 // @name        GalaxytoolNG Toolbar: Messages
 // @namespace   https://foro.gt.linaresdigital.com
 // @description Galaxytool Toolbar compatible with Ogame 6
-// @version     0.5.2
+// @version     0.5.3
 // @author      Óscar Javier García Baudet
 // @namespace   https://github.com/GalaxytoolNG
 // @downloadURL https://raw.githubusercontent.com/GalaxytoolNG/GalaxytoolNG-Toolbar/master/toolbar.user.js
@@ -48,7 +48,7 @@
             bottonz.style.display = 'none';
             var settingsGTNG = document.createElement('div');
             settingsGTNG.id = 'settingsGTNG';
-            settingsGTNG.innerHTML = '<div class="header c-left"><h2>GalaxytoolNG settings:</h2></div><div class="content">HELLO</div>';
+            settingsGTNG.innerHTML = '<div class="header c-left galaxytoolbar_header"><h2>GalaxytoolNG settings:</h2></div><div class="content">HELLO</div>';
             document.getElementById("contentWrapper").appendChild(settingsGTNG);
         } else {
             bottonz.style.display = 'block';
