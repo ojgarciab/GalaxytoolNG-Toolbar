@@ -30,3 +30,5 @@ Use the data to work with it in several ways:
 
 * Own Galaxytool NG.
 * Proxy to old galaxytool database/API.
+
+Edit: Project stalled
