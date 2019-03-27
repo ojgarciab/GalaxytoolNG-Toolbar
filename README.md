@@ -1,6 +1,7 @@
 # GT-Proxy-Toolbar
 Request for Ogame API key:
-http://board.origin.ogame.gameforge.com/board6-origin/board5-feedback-discussions/7233-applications-for-api-keys/index2.html#post40043
+
+https://board.origin.ogame.gameforge.com/index.php/Thread/7233-Old-Applications-for-API-Keys/?postID=40043#post40043
 
 Work in progress, I have API key only for pionners universe.
 
