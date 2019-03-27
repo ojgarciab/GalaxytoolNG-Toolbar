@@ -1,4 +1,7 @@
 # GT-Proxy-Toolbar
+[![StyleCI](https://github.styleci.io/repos/46446360/shield?branch=master)](https://github.styleci.io/repos/46446360)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/91e993694af0470fb59bcdbe44566f96)](https://www.codacy.com/app/ojgarciab/GalaxytoolNG-Toolbar)
+
 Request for Ogame API key:
 
 https://board.origin.ogame.gameforge.com/index.php/Thread/7233-Old-Applications-for-API-Keys/?postID=40043#post40043
